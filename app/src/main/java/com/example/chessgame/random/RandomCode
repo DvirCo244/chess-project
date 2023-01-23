@@ -1,0 +1,129 @@
+  ------------------------------
+    public void register(View view) {
+        EditText emailEditText = findViewById(R.id.edittext_email);
+        EditText passwordEditText = findViewById(R.id.edittext_password);
+        mAuth.createUserWithEmailAndPassword(emailEditText.getText().toString(),passwordEditText.getText().toString())
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if(task.isSuccessful()){
+                            startActivity(new Intent(LoginActivity.this, OpenActivity.class));
+                        }else{
+                            Toast.makeText(LoginActivity.this,"register failed :(",Toast.LENGTH_LONG).show();
+                        }
+                    }
+                });
+    }
+----------------------------------------
+   public void login(View view){
+        EditText emailEditText = findViewById(R.id.edittext_email);
+        EditText passwordEditText = findViewById(R.id.edittext_password);
+        mAuth.signInWithEmailAndPassword(emailEditText.getText().toString(),passwordEditText.getText().toString())
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if(task.isSuccessful()){
+                            startActivity(new Intent(LoginActivity.this,OpenActivity.class));
+                        }else{
+                            Toast.makeText(LoginActivity.this, "login failed :(", Toast.LENGTH_LONG).show();
+                        }
+                    }
+                });
+    }
+    ----------------------------------------
+       @Override
+        public void onStart(){
+            super.onStart();
+            if(Presenter.getAUTH().getCurrentUser() != null){
+                startActivity(new Intent(LoginActivity.this, OpenActivity.class));
+            }
+        }
+        --------------------------------------
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+               @Override
+               public void onDataChange(@NonNull DataSnapshot snapshot) {
+                   if(snapshot.exists()){
+                       Toast.makeText(OpenActivity.this,"game found",Toast.LENGTH_SHORT).show();
+
+                   }
+                   else{
+                       Toast.makeText(OpenActivity.this,"game not found",Toast.LENGTH_SHORT).show();
+                   }
+               }
+               @Override
+               public void onCancelled(@NonNull DatabaseError error) {
+
+               }
+           });
+           ----------------------------------------------------
+            /* @Override
+               public String toString() {
+                 String desc = " \n";
+                 for(int i = 7;i>= 0;i--){
+                     for(int j = 0;j<8;j++){
+                         ChessPiece piece =  pieceAt(i,j);
+                         if(piece == null){
+                             desc += " .";
+                         }else{
+                             if(piece.getType().equals("KING")){
+                                 if(piece.getPlayer().equals("white"))
+                                     desc+= "k";
+                                 else
+                                     desc+="K";
+                             }else
+                             if(piece.getType().equals("QUEEN")){
+                                 if(piece.getPlayer().equals("white"))
+                                     desc+= "q";
+                                 else
+                                     desc+="Q";
+                             }else
+                             if(piece.getType().equals("BISHOP")){
+                                 if(piece.getPlayer().equals("white"))
+                                     desc+= "b";
+                                 else
+                                     desc+="B";
+                             }else
+                             if(piece.getType().equals("ROOK")){
+                                 if(piece.getPlayer().equals("white"))
+                                     desc+= "r";
+                                 else
+                                     desc+="R";
+                             }else
+                             if(piece.getType().equals("KNIGHT")){
+                                 if(piece.getPlayer().equals("white"))
+                                     desc+= "n";
+                                 else
+                                     desc+="N";
+                             }else
+                                 if(piece.getType().equals("PAWN")){
+                                 if(piece.getPlayer().equals("white"))
+                                     desc+= "p";
+                                 else
+                                     desc+="P";
+                             }
+                         }
+                     }
+                     desc+= "\n";
+                 }
+                 desc += " 0 1 2 3 4 5 6 7";
+                 return desc;
+               }*/
+               ---------------------
+                /*  if (gameModule.pieceAt(fromCol, fromRow) != null) {
+
+                                   if ((toRow == 7 && toCol == 4) || (toCol == 4 && toRow == 0)) {
+                                       startActivity(new Intent(this, OpenActivity.class));
+                                   }
+
+                                   clickedPiece = findViewById(gameModule.pieceAt(fromCol, fromRow).getId());
+                                   GridLayout.LayoutParams params = new GridLayout.LayoutParams(clickedPiece.getLayoutParams());
+                                   params.rowSpec = GridLayout.spec(toRow);
+                                   params.columnSpec = GridLayout.spec(toCol);
+                                   gridLayout.removeView(clickedPiece);
+                                   gridLayout.addView(clickedPiece, params);
+                                   gameModule.movePiece(fromCol, toCol, fromRow, toRow);
+
+                                   Log.d(TAG, "after move (" + gameModule.pieceAt(toCol, toRow).getCol() + "," + gameModule.pieceAt(toCol, toRow).getRow() + ")");
+                               }
+                               Log.d(TAG, "up At (" + toCol + "," + toRow + ")");
+                               break;*/

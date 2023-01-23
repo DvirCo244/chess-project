@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">ChessGame</string>
+    <string name="leave_game_label">Leave Game</string>
+    <string name="game_code_label"> The game code is</string>
+    <string name="dont_have_account_label">Don\'t have account?</string>
+    <string name="login_label">Login</string>
+    <string name="app_title_label">ChessCo</string>
+    <string name="app_open_label">Welcome to ChessCo</string>
+    <string name="email_text">Email</string>
+    <string name="password_text">Password</string>
+    <string name="sign_up_label">Sign Up</string>
+    <string name="join_game_label">Join Game</string>
+    <string name="create_game_label">Create Game</string>
+    <string name="log_out_label">Logout</string>
+    <string name="enter_game_code_text">game code</string>
+    <string name="or_label">Or</string>
+    <string name="current_turn_label">Current Player:white</string>
+</resources>
